@@ -8,6 +8,7 @@
     width: 50vw;
     margin: auto;
     display: flex;
+   
 }
 
 .slider {
@@ -15,9 +16,11 @@
     margin-top: 15vh;
     position: relative;
     flex-grow: 1;
-   
+    width: 50vw;
 }
-
+img{
+    width: 100%;
+}
 .image-list {
     height: 100%;
     position: relative;
@@ -26,9 +29,9 @@
 .image-wrapper {
     height: 100%;
     display: none;
+    
+
 }
-
-
 
 .image-wrapper.show {
     display: block;
