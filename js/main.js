@@ -1,24 +1,24 @@
 
-const imagesDom = ["img/1.webp", "img/2.webp", "img/3.webp", "img/4.webp", "img/5.webp"];
+
 const images = [
     {
-        image: 'img/01.webp',
+        image: 'img/1.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
     }, {
-        image: 'img/02.webp',
+        image: 'img/2.webp',
         title: 'Ratchet & Clank: Rift Apart',
         text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
     }, {
-        image: 'img/03.webp',
+        image: 'img/3.webp',
         title: 'Fortnite',
         text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
     }, {
-        image: 'img/04.webp',
+        image: 'img/4.webp',
         title: 'Stray',
         text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
     }, {
-        image: 'img/05.webp',
+        image: 'img/5.webp',
         title: "Marvel's Avengers",
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
@@ -36,23 +36,27 @@ let sliderContent = "";
 let thumbContent = "";
 
 
-for (let i = 0; i < imagesDom.length; i++) {
+
     const newImageWrapper = `<div class="image-wrapper">
-                                <img class="th-img" src="${imagesDom[i]}" />
+                                <img class="th-img" src="${element.image}" />
+                                <div class="tx-info"> 
                                 <h3>${element.title}</h3>
                                 <p>${element.text}</p>
+                                </div>
+                               
                             </div>`;
 
     const newThumb = `<div class="thumb-wrapper ">
-    <img class="th-img" src="${imagesDom[i]}" alt="">
+    <img class="th-img" src="${element.image}" alt="">
    </div>`;
+
     sliderContent += newImageWrapper;       
     thumbContent += newThumb;
+
+imageListDom.innerHTML += sliderContent;
+thumbsContainerDom.innerHTML += thumbContent;
+
 }
-
-imageListDom.innerHTML = sliderContent;
-thumbsContainerDom.innerHTML = thumbContent;
-
 const imagesWrapperDom = document.getElementsByClassName('image-wrapper');
 const thumbesDom = document.getElementsByClassName('thumb-wrapper');
 
@@ -128,4 +132,3 @@ prevDom.addEventListener('click',
        // }
     }
 );
-}

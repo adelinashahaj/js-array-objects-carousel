@@ -20,6 +20,7 @@
 
 .image-list {
     height: 100%;
+    position: relative;
 }
 
 .image-wrapper {
@@ -27,11 +28,7 @@
     display: none;
 }
 
-.image {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
+
 
 .image-wrapper.show {
     display: block;
@@ -85,4 +82,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.tx-info{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    text-align: right;
+    padding: 10px;
 }
