@@ -1,32 +1,65 @@
 
 const imagesDom = ["img/1.webp", "img/2.webp", "img/3.webp", "img/4.webp", "img/5.webp"];
-
+const images = [
+    {
+        image: 'img/01.webp',
+        title: 'Marvel\'s Spiderman Miles Morale',
+        text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+    }, {
+        image: 'img/02.webp',
+        title: 'Ratchet & Clank: Rift Apart',
+        text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+    }, {
+        image: 'img/03.webp',
+        title: 'Fortnite',
+        text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+    }, {
+        image: 'img/04.webp',
+        title: 'Stray',
+        text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+    }, {
+        image: 'img/05.webp',
+        title: "Marvel's Avengers",
+        text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
+    }
+];
+for (let i = 0; i < images.length; i++){
+    let element = images[i];
+    console.log(element);
+ for(let key in element){
+    console.log(element[key]);
+ }
 const imageListDom = document.querySelector('.image-list');
-const circleContainerDom = document.querySelector('.circle-container');
+const thumbsContainerDom = document.querySelector('.thumbs-container');
 
 let sliderContent = "";
-let circleContent = "";
+let thumbContent = "";
+
 
 for (let i = 0; i < imagesDom.length; i++) {
     const newImageWrapper = `<div class="image-wrapper">
-                                <img class="image" src="${imagesDom[i]}" />
+                                <img class="th-img" src="${imagesDom[i]}" />
+                                <h3>${element.title}</h3>
+                                <p>${element.text}</p>
                             </div>`;
 
-    const newCircle = `<div class="circle"><img class="image" src="${imagesDom[i]}" /></div>`;
+    const newThumb = `<div class="thumb-wrapper ">
+    <img class="th-img" src="${imagesDom[i]}" alt="">
+   </div>`;
     sliderContent += newImageWrapper;       
-    circleContent += newCircle;
+    thumbContent += newThumb;
 }
 
 imageListDom.innerHTML = sliderContent;
-circleContainerDom.innerHTML = circleContent;
+thumbsContainerDom.innerHTML = thumbContent;
 
 const imagesWrapperDom = document.getElementsByClassName('image-wrapper');
-const circlesDom = document.getElementsByClassName('circle');
+const thumbesDom = document.getElementsByClassName('thumb-wrapper');
 
 let activeImage = 0;
 
 imagesWrapperDom[activeImage].classList.add('show'); 
-circlesDom[activeImage].classList.add('current');
+thumbesDom[activeImage].classList.add('active');
 
 const nextDom = document.querySelector('#next');
 const prevDom = document.querySelector('#prev');
@@ -35,16 +68,22 @@ nextDom.addEventListener('click',
 
     function() {
         console.log(activeImage);
-        if (activeImage < imagesWrapperDom.length - 1) {
+       // if (activeImage < imagesWrapperDom.length - 1) {
 
             imagesWrapperDom[activeImage].classList.remove('show');
-            circlesDom[activeImage].classList.remove('current');
-            activeImage++;
+            thumbesDom[activeImage].classList.remove('active');
+            if (activeImage == imagesWrapperDom.length - 1){
+                activeImage = 0;
+            }else{
+                activeImage = activeImage + 1;
+            }
+            
             imagesWrapperDom[activeImage].classList.add('show');
-            circlesDom[activeImage].classList.add('current');
-            prevDom.classList.remove('hide');
+            thumbesDom[activeImage].classList.add('active');
 
-            if (activeImage == imagesWrapperDom.length - 1) {
+            /*   prevDom.classList.remove('hide');
+
+         if (activeImage == imagesWrapperDom.length - 1) {
                
             }
         }else{
@@ -55,23 +94,28 @@ nextDom.addEventListener('click',
                
             }
         activeImage = 0;
-            
-        }
+            */
+       // }
     }
 );
 
 prevDom.addEventListener('click', 
     function() {
         console.log(activeImage);
-        if (activeImage > 0) {
+       // if (activeImage > 0) {
 
             imagesWrapperDom[activeImage].classList.remove('show');
-            circlesDom[activeImage].classList.remove('current');
-            activeImage--;
+            thumbesDom[activeImage].classList.remove('active');
+            if (activeImage == 0){
+                activeImage = imagesWrapperDom.length - 1;
+            }else{
+                activeImage--;
+            }
+            
             imagesWrapperDom[activeImage].classList.add('show');
-            circlesDom[activeImage].classList.add('current');
+            thumbesDom[activeImage].classList.add('active');
 
-            nextDom.classList.remove('hide');
+            /*nextDom.classList.remove('hide');
 
             if (activeImage == 0) {
                
@@ -80,7 +124,8 @@ prevDom.addEventListener('click',
         }else{
             activeImage == 0;
             activeImage = imagesWrapperDom.length - 1;
-            
-        }
+            */
+       // }
     }
 );
+}
