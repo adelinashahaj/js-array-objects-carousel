@@ -43,7 +43,6 @@ let thumbContent = "";
                                 <h3>${element.title}</h3>
                                 <p>${element.text}</p>
                                 </div>
-                               
                             </div>`;
 
     const newThumb = `<div class="thumb-wrapper ">
@@ -68,12 +67,13 @@ thumbesDom[activeImage].classList.add('active');
 const nextDom = document.querySelector('#next');
 const prevDom = document.querySelector('#prev');
 
+
+// Negazione in sotto 
 nextDom.addEventListener('click', 
 
     function() {
         console.log(activeImage);
-       // if (activeImage < imagesWrapperDom.length - 1) {
-
+    
             imagesWrapperDom[activeImage].classList.remove('show');
             thumbesDom[activeImage].classList.remove('active');
             if (activeImage == imagesWrapperDom.length - 1){
@@ -85,29 +85,13 @@ nextDom.addEventListener('click',
             imagesWrapperDom[activeImage].classList.add('show');
             thumbesDom[activeImage].classList.add('active');
 
-            /*   prevDom.classList.remove('hide');
-
-         if (activeImage == imagesWrapperDom.length - 1) {
-               
-            }
-        }else{
-            imagesWrapperDom[activeImage].classList.remove('show');
-            circlesDom[activeImage].classList.remove('current');
-           
-            if (activeImage == imagesWrapperDom.length - 1) {
-               
-            }
-        activeImage = 0;
-            */
-       // }
     }
 );
-
+// Negazione in sopra 
 prevDom.addEventListener('click', 
     function() {
         console.log(activeImage);
-       // if (activeImage > 0) {
-
+      
             imagesWrapperDom[activeImage].classList.remove('show');
             thumbesDom[activeImage].classList.remove('active');
             if (activeImage == 0){
@@ -119,16 +103,35 @@ prevDom.addEventListener('click',
             imagesWrapperDom[activeImage].classList.add('show');
             thumbesDom[activeImage].classList.add('active');
 
-            /*nextDom.classList.remove('hide');
-
-            if (activeImage == 0) {
-               
-            }
-
-        }else{
-            activeImage == 0;
-            activeImage = imagesWrapperDom.length - 1;
-            */
-       // }
     }
 );
+
+
+// Negazione in avanti con intervallo
+const intervalImages = setInterval(function(){
+    imagesWrapperDom[activeImage].classList.remove('show');
+    thumbesDom[activeImage].classList.remove('active');
+    if (activeImage == imagesWrapperDom.length - 1){
+        activeImage = 0;
+    }else{
+        activeImage = activeImage + 1;
+    }
+    
+    imagesWrapperDom[activeImage].classList.add('show');
+    thumbesDom[activeImage].classList.add('active');
+
+}, 3000)
+
+// Al click sull'immagine del thumb cambio immagine 
+for (let i = 0; i < thumbesDom.length; i++){
+    let thisThumb = thumbesDom[i];
+    thisThumb.addEventListener("click", function(){
+        imagesWrapperDom[activeImage].classList.remove('show');
+        thumbesDom[activeImage].classList.remove('active');
+        activeImage = i;
+        
+        imagesWrapperDom[activeImage].classList.add('show');
+        thumbesDom[activeImage].classList.add('active');
+
+    })
+}
